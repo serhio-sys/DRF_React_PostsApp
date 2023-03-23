@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset for Posts App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        center a{
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 0.4em;
+            padding: 0.4em;
+            transition: all ease 300ms;
+            text-decoration: none;
+            font-size: 2em;
+            color: lightgray;
+        }
+        center a:hover{
+            color: black;
+            background-color: rgba(0, 0, 0, 0.4);;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Hello, {{user}}!</h1></center>
+    <center><span>Thank you for using our <h2>Post App</h2></span></center>
+    <br>
+    <center><a href={{link}}>Reset Password</a></center>
+    <br>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.btn{
+    padding: 10px 5px;
+    border-radius: 0.4em;
+    background-color: lightblue;
+    font-size: 1.1em;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight:300;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+.btn:hover{
+    color: white;
+    background-color: blue;
+}

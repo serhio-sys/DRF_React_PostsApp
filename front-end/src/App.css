@@ -1,0 +1,545 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+#root{
+  background-image: linear-gradient(to left,red,orange);
+  background-repeat: no-repeat;
+  background-size: 400%,400%;
+  background-position: 100%;
+  height: 100vh;
+  animation: backgroundAn 10s infinite;
+  overflow: hidden;
+}
+nav{
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0.4em;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+}
+.logo{
+  color: white;
+  font-size: 2em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style: italic;
+  margin-left: 1em;
+  cursor: pointer;
+}
+nav ul{
+  display: flex;
+  list-style: none;
+  gap: 1em;
+  font-size: 1.1em;
+  margin-right: 1em;
+}
+nav ul a{
+  color: white;
+}
+nav ul li{
+  color: white;
+  width: 70px;
+  padding: 0.4em;
+  text-align: center;
+  transition: all ease 300ms;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+}
+nav ul li:hover{
+  transform: scale(1.1,  1.1);
+  
+  background-size: 100% 2px;
+}
+@keyframes likeanim {
+  0%{
+    transform: scale(1,1);
+  }
+  40%{
+    transform: scale(1.3,1.3);
+  }
+  60%{
+    transform: scale(0.8,0.8);
+  }
+  100%{
+    transform: scale(1,1);
+  }
+}
+@keyframes follow{
+  0%{
+    transform: scale(1,1);
+  }
+  50%{
+    transform: scale(1.2,1.2);
+  }
+  100%{
+    transform: scale(1,1);
+  }
+}
+@keyframes backgroundAn {
+  0%{
+      background-position: 0%;
+  }
+  50%{
+    background-position: 100%;
+  }
+  100%{
+    background-position: 0%;
+  }
+}
+.center{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.block-title{
+  background-image: linear-gradient(to left ,lightgray, black);
+  animation: backgroundAn 7s infinite;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style:oblique;
+  display: flex;
+  align-items: center;
+  background-clip: text;
+  background-size: 400%,400%;
+  background-position: 0%;
+  background-repeat: repeat;
+  height: 90vh;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  font-size: 4em;
+}
+.title-over,.detail{
+  display: block;
+  height: auto;
+  font-size: 3em;
+}
+.detail{
+  font-size: 1.1em;
+}
+.linkk{
+  font-size: 2.5em;
+  animation: none;
+  background-image: linear-gradient(to left,blue,blue);
+}
+.block{
+  margin-top: 2em;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 2em;
+  border-radius: 0.4em;
+  box-shadow: 2px 2px 10px white;
+  max-width: 60%;
+  min-width: 30%;
+  text-align: center;
+}
+.block form{
+  display: flex;
+  flex-direction: column;
+  gap: 1.8em;
+  text-align: center;
+  min-width: 80%;
+  min-height: 40%;
+}
+.block form h1{
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: white;
+  font-weight: 100;
+}
+.block form h3{
+  color: white;
+}
+.block form a{
+  color: lightblue;
+  text-decoration: underline;
+  font-weight: 100;
+}
+.block-posts,.block-users{
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin-top: 1em;
+  color: white;
+  justify-content: center;
+}
+.block-posts a,.block-users a{
+  color: white;
+}
+.post{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: linear-gradient(to left,skyblue,blue);
+  background-repeat: no-repeat;
+  background-size: 400%,400%;
+  background-position: 100%;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 0.5em;
+  border-radius: 0.4em;
+  animation: backgroundAn 10s infinite;
+}
+.block h1{
+  color: white;
+  font-weight: 100;
+  border-bottom: 2px solid white;
+}
+.post-title{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  font-size: 1.3em;
+}
+.post div a{
+  letter-spacing: 1px;
+  font-style: normal;
+  font-weight: 900;
+}
+.post-desc{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 1;
+}
+.link{
+    height: 100%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    background-color: black;
+    transition: all ease-in-out 300ms;
+    cursor: pointer;
+    border-radius: 0.4em;
+}
+.link:hover{
+    color: black;
+    background-color: white;
+}
+.active-link{
+  color: black;
+  background-color: white;
+}
+.selected{
+    color: black;
+    background-color: white;
+}
+.paginator{
+  margin-top: 1em;
+  display: flex;
+  color: white;
+  list-style: none;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1em;
+}
+.block-body{
+  color: white;
+  margin-top: 1em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.dropbtn {
+  color: white;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  background-color: transparent;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top:100%;
+  left: -10%;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 0.4em 0.5em;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.msg{
+  color: blue;
+  font-size: 1.8em;
+  font-style: italic;
+}
+.error{
+  color: red;
+}
+.create-link{
+  width: 100%;
+  padding: 0.4em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.create-link a{
+  color: white;
+  font-weight: 100;
+  letter-spacing: 2px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  padding: 0.4em;
+  transition: all ease 300ms;
+}
+.create-link a:hover{
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-left: none;
+  border-right: none;
+}
+.like,.unlike{
+  color: white;
+  font-size: 2em;
+  height: auto;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;  
+  width: 100%;
+}
+.unlike{
+  color: red;
+}
+.like:focus,.unlike:focus {
+  -webkit-animation: likeanim 0.3s ease backwards;
+          animation: likeanim 0.3s ease backwards;
+}
+.like:active,.unlike:active {
+  -webkit-animation: none;
+          animation: none;
+}
+.block-users{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.user{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 2px solid white;
+  border-radius: 0.5em;
+  padding: 0.4em;
+  background-image: linear-gradient(to left ,red, orange);
+  animation: backgroundAn 7s infinite;
+  background-size: 400%,400%;
+  background-position: 0%;
+}
+.user-count{
+  font-size: 0.9em;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight:lighter;
+}
+.user-username{
+  font-size: 1.4em;
+  background-image: linear-gradient(to left ,lightgreen, lightblue);
+  animation: backgroundAn 7s infinite;
+  font-style:oblique;
+  background-clip: text;
+  background-size: 400%,400%;
+  background-position: 0%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+.user-link{
+  background-color: black;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  transition: all ease 300ms;
+}
+.user-link:hover{
+    color: lightgreen;
+ 
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    background-size: 100% 2px; 
+}
+.search-input{
+  color: black;
+  padding: 0.4em;
+  border-radius: 0.4em;
+  outline: none;
+  border: none;
+  width: 100%;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  letter-spacing: 1px;
+}
+.block h2{
+  color: white;
+  letter-spacing: 2px;
+  text-shadow: 1px 2px 6px gray;
+}
+.search-input::placeholder{
+  color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 2px;
+}
+.followbar{
+  border-radius: 0.5em;
+  padding: 0.4em;
+  background-image: linear-gradient(to left ,lightblue, blue);
+  animation: backgroundAn 7s infinite;
+  background-size: 400%,400%;
+  background-position: 0%;
+  margin: 1em 0em;
+}
+.follow-btn,.unfollow-btn{
+  padding: 0.4em 1em;
+  border-radius: 0.4em;
+  outline: none;
+  border: none;
+  margin-bottom: 1em;
+  background-image: linear-gradient(to left ,green, orange);
+  animation: backgroundAn 7s infinite;
+  color: black;
+  font-size: 1em;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  cursor: pointer;
+  background-size: 400%,400%;
+  background-position: 0%;
+  transition: all ease 300ms;
+}
+.unfollow-btn{
+  background-image: linear-gradient(to left ,red, darkred);
+  color: white;
+}
+.follow-btn:hover,.unfollow-btn:hover{
+  transform: scale(1.1,1.1);
+}
+.follow-btn:focus,.unfollow-btn:focus {
+  -webkit-animation: follow 0.3s ease backwards;
+          animation: follow 0.3s ease backwards;
+}
+.follow-btn:active,.unfollow-btn:active {
+  -webkit-animation: none;
+          animation: none;
+}
+.ff-link{
+  height: 100%;
+}
+.ff-link a{
+  display: block;
+  height: 100%;
+  border-radius: 0.5em;
+  padding: 0.4em;
+  margin: 0.4em;
+  color: lightsalmon;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all ease 300ms;
+}
+.ff-link a:hover{
+  color: white;
+
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-size: 100% 2px; 
+}
+.link-towrite{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+.link-towrite a{
+  padding: 0.4em;
+  display: block;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.5em;
+  transition: all ease 300ms;
+}
+.link-towrite a:hover{
+  transform: scale(1.1,1.1);
+  background-color: white;
+  color: black;
+}
+.post-delete button{
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.4em;
+  transition: all ease 300ms;
+}
+.post-delete button:hover{
+  transform: scale(1.2,1.2);
+  background-color: black;
+}
+.chat-scroll{
+  margin-top: 1em;
+  width: 100%;
+  height: 400px;
+  border-radius: 0.5em;
+  background-color: #f9f9f9;
+  overflow: auto;
+  max-width: 500px;
+}
+.sendform{
+  margin-top: 1em;
+  height: 30px;
+}
+.chat-input{
+  padding: 0 1em;
+  border-radius: 0.3em;
+  outline: none;
+  border: none;
+  height: 100%;
+}
+.chat-btn{
+  height: 100%;
+  padding: 0.4em;
+  border-radius: 0.3em;
+  outline: none;
+  border: none;
+  letter-spacing: 2px;
+  font-weight: 600;
+  background-color: lightgreen;
+  transition: all ease 300ms;
+  cursor: pointer;  
+}
+.chat-btn:hover{
+  transform: scale(1.1,1.1);
+  background-color: red;
+}

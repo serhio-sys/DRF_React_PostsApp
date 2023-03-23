@@ -1,0 +1,10 @@
+.paginator{
+    margin-top: 1em;
+    display: flex;
+    color: white;
+    list-style: none;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 0.1em;
+}

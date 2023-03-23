@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+  web:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile_front
+    volumes:
+      - '.:/front'
+      - 'front/node_modules'
+    ports:
+      - '3001:3000'
+
+  api:
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile_back
+    volumes:
+      - '.:/backend'
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+volumes:
+  postgres_data:
