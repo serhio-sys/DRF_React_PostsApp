@@ -9,6 +9,16 @@ class User(AbstractUser):
     class Meta(AbstractUser.Meta):
        swappable = 'AUTH_USER_MODEL'
 
+class Chat(models.Model):
+    users = models.ManyToManyField(User,related_name="chat",blank=True,default=None)
+
+
+class Message(models.Model):
+    msg = models.CharField("Message",max_length=255)
+    user = models.ForeignKey(User,verbose_name="USER",on_delete=models.CASCADE)
+    chat = models.ForeignKey(Chat,verbose_name="CHAT",on_delete=models.CASCADE)
+
+
 class Post(models.Model):
     title = models.CharField("title of post",max_length=30)
     desk = models.TextField("description of post")

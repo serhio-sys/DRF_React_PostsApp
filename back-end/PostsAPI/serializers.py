@@ -3,6 +3,18 @@ from django.contrib.auth import get_user_model
 from .models import *
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
+class ChatSerializer(serializers.ModelSerializer):
+    users = serializers.StringRelatedField(read_only=True,many=True)
+
+    class Meta:
+        model = Chat
+        fields = ('id','users')
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('__all__')
+
 class MyTokenObtainSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):

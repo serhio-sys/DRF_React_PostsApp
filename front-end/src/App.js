@@ -40,7 +40,7 @@ function App() {
                 <Route path='/followed/:pk/users/' element={<FollowedPage/>}/>
                 <Route path='/followers/:pk/users/' element={<FollowersPage/>}/>
                 <Route element={<RequreAuth/>}>       
-                  <Route path='/chat/:first/:second/' element={<ChatPage/>}/>
+                  <Route path='/chat/:first/:user/' element={<ChatPage/>}/>
                   <Route path='/profile/' element={<Profile/>}/> 
                   <Route element={<RefreshingToken/>}> 
                     <Route path='/create-post/' element={<PostCreate/>}/>

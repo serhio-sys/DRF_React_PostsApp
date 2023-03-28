@@ -32,6 +32,10 @@ ALLOWED_HOSTS = ['localhost','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels_redis',
+    'channels',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'rest_framework_simplejwt.token_blacklist',
@@ -48,6 +52,15 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+ASGI_APPLICATION = 'Settings.asgi.application'
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis", 6379)],
+        },
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,11 +91,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Settings.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
 
 DATABASES = {
     'default': {

@@ -6,11 +6,15 @@ import '../mobile_media.css'
 import AnotherPaginator from "../UI/AnotherPaginator";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "../context/authSlice";
+import { selectCurrentRefresh, selectCurrentUser } from "../context/authSlice";
 import RefreshToken from "../context/RefreshToken";
+import jwtDecode from "jwt-decode";
 
 const AnotherProfile = () => {
     const user_id = useParams().pk
+    if (localStorage.getItem('token')) {
+        const myid = jwtDecode(localStorage.getItem('token')).user_id
+    }
     const [posts,setPosts] = useState([])
     const [linki,setLinks] = useState([])
     const [selectedPage,setPage] = useState(1)
@@ -20,9 +24,11 @@ const AnotherProfile = () => {
     const [userdata,setUserdata] = useState({})
     const [followed,setFollowed] = useState(0)
     const myusername = useSelector(selectCurrentUser)
+    const refresh = useSelector(selectCurrentRefresh)
     const [followers,setFollowers] = useState(0)
     const [follw,setFollw] = useState(true)
     const dispatch = useDispatch()
+    const [chatid,setChatId] = useState({})
 
     function fetchData(url) {
         axios.get(url)
@@ -61,6 +67,25 @@ const AnotherProfile = () => {
             setLinks(links)
         }
 
+        async function fetchChat(){
+            if (localStorage.getItem('token')) {
+                try{
+                    const response = await axios.get(`chat/${user_id}/`,{
+                        headers:{
+                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+                    setChatId(response.data.chat.id)
+                }
+                catch(err){
+                    if (err.response.status === 401) {
+                        await RefreshToken(dispatch,refresh,fetchChat)
+                    }
+                    console.log(err)
+                }
+            }
+        }
+
         async function fetchUserData() {
             try{
                 const response = await axios.get(`users/${user_id}/`)
@@ -78,6 +103,7 @@ const AnotherProfile = () => {
             }
 
         }
+        fetchChat()
         fetchUserData()
         changePaginate()
         fetchData(`posts/${user_id}/filter/?limit=8&offset=${(selectedPage-1)*8}`)
@@ -125,7 +151,7 @@ const AnotherProfile = () => {
                             <div className="ff-link"><Link to={`/followers/${user_id}/users/`}>Followers: {followers}</Link></div>
                             <div className="ff-link"><Link to={`/followed/${user_id}/users/`}>Followed: {followed}</Link></div>
                         </div>
-                        <div className="link-towrite"><div><Link>Write Now</Link></div></div>
+                        <div className="link-towrite"><div><Link to={`/chat/${chatid}/${user_id}`}>Write Now</Link></div></div>
                     </div>
                     <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
                         {follw?<button className="follow-btn" onClick={()=>{FollowUnFollow()}}>Follow</button>:<button className="unfollow-btn" onClick={()=>{FollowUnFollow()}}>Un Follow</button>}

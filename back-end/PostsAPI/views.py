@@ -19,6 +19,7 @@ from django.utils.html import strip_tags
 import re
 from rest_framework.generics import DestroyAPIView
 from rest_framework.pagination import LimitOffsetPagination
+from django.core.exceptions import ObjectDoesNotExist
 
 class MyTokenObtainView(TokenObtainPairView):
     serializer_class = MyTokenObtainSerializer
@@ -32,6 +33,37 @@ class DestroyAccount(DestroyAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsMyAcc,]
     queryset = get_user_model().objects.all()
+
+@api_view(['get'])
+def get_user_by_name(request,name):
+    try:
+        user = get_user_model().objects.get(username=name)
+    except get_user_model().DoesNotExist:
+        return Response({"error":"Does not exist!"},status=status.HTTP_400_BAD_REQUEST)
+    return Response(UserSerializer(user).data,status=status.HTTP_200_OK)
+
+@api_view(['get'])
+@permission_classes([IsAuthenticated,])
+def check_or_create_chat(request,pk):
+    print(request.user.pk,pk)
+    if request.user.pk==int(pk):
+        return Response({"error":"Request user is same with another user!"},status=status.HTTP_400_BAD_REQUEST)
+    try:
+        get_user_model().objects.get(pk=pk)
+    except get_user_model().DoesNotExist or ObjectDoesNotExist:
+        return Response({"error":"User is not found!"},status=status.HTTP_400_BAD_REQUEST)
+    try:
+        chat = Chat.objects.filter(users__in=[request.user.pk,pk])
+        print(chat[0].id)
+    except IndexError:
+        chat = Chat.objects.create()
+        chat.users.add(request.user)
+        chat.users.add(get_user_model().objects.get(pk=pk))
+        chat.save()
+        return Response({"chat":ChatSerializer(chat).data},status=status.HTTP_200_OK)
+    messages = Message.objects.filter(chat__id=chat[0].id)
+    return Response({"chat":ChatSerializer(chat[0]).data,"messages":MessageSerializer(messages,many=True).data},status=status.HTTP_200_OK)
+
 
 @api_view(['post'])
 @permission_classes([IsAuthenticated,])

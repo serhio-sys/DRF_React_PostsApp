@@ -7,6 +7,8 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+    links:
+      - redis
 
   web:
     build:
@@ -17,6 +19,13 @@ services:
       - 'front/node_modules'
     ports:
       - '3001:3000'
+
+  redis:
+    image: redis
+    volumes:
+      - ./data:/data
+    ports:
+      - 6379:6379
 
   api:
     build:

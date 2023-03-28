@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
     TokenBlacklistView
 )
-from .views import PostAPIViewSet,DestroyPost,DestroyAccount,UserAPIViewSet,PostAPIPatch,UserAPIPatch,UsersFollowersView,UsersFollowedView,createuser,MyTokenObtainView,PostsFilteredView,livesearch,follow,getfollowers
+from .views import PostAPIViewSet,DestroyPost,check_or_create_chat,get_user_by_name,DestroyAccount,UserAPIViewSet,PostAPIPatch,UserAPIPatch,UsersFollowersView,UsersFollowedView,createuser,MyTokenObtainView,PostsFilteredView,livesearch,follow,getfollowers
 
 urlpatterns = [
     path('token/', MyTokenObtainView.as_view(), name='token_obtain_pair'),
@@ -13,6 +13,8 @@ urlpatterns = [
     path('logout/', TokenBlacklistView.as_view(), name='token_blacklist'),
     path('users/',UserAPIViewSet.as_view({'get':'list'})),
     path('users/<pk>/',UserAPIViewSet.as_view({'get':'retrieve'})),
+    path('chat/<pk>/',check_or_create_chat),
+    path('userbyname/<name>/',get_user_by_name),
     path('create-users/',createuser),
     path('users/<pk>/follow/',follow),
     path('users/<pk>/followers/',UsersFollowersView.as_view()),
